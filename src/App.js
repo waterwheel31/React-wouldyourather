@@ -13,6 +13,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import Header from './components/header'
 import Login from './components/Login'
+import Logout from './components/Logout'
 import NewQuestion from './components/NewQuestion'
 import Theme from './designs/theme'
 
@@ -48,6 +49,9 @@ class App extends React.Component{
         )}/>
         <Route exact path='/login' render={()=>(
              <Login/> 
+        )}/>
+        <Route exact path='/logout' render={()=>(
+             <Logout/> 
         )}/>
 
       </div>

@@ -68,7 +68,7 @@ class Login extends React.Component{
                     {this.props.children} 
                     <List>
                         {this.state.users.map((user)=>(
-                        <ListItem alignItems="flex-start" onClick={this.selectUser.bind(this, user.name)}>
+                        <ListItem alignItems="flex-start" onClick={this.selectUser.bind(this, user.id)}>
                             <ListItemAvatar>
                                     <Avatar alt={user.name} src={user.avatarURL} />
                                 </ListItemAvatar>
@@ -89,7 +89,7 @@ class Login extends React.Component{
 const mapStateToProps = (state) => {
 
     return {
-        loginUser: state.loginUser,
+        loginUser: state.selectUser,
         
     }
 }
