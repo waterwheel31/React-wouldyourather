@@ -16,6 +16,9 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import { connect } from 'react-redux'
+
+import {selectUser} from '../actions/selectUser'
 
 
 class Login extends React.Component{
@@ -44,7 +47,11 @@ class Login extends React.Component{
     }
 
     selectUser = (userName) => {
+        console.log("current login user:", this.props.loginUser)
+        console.log("props:", this.props)
+        this.props.dispatch(selectUser(userName))
         console.log("selectUser:", userName)
+        console.log("current login user after select:", this.props.loginUser)
     }
 
     render(){
@@ -56,7 +63,7 @@ class Login extends React.Component{
                 <MuiThemeProvider theme={Theme}>
                 <div>
                     <Header/> 
-
+                    
                     <div><h2>User List</h2></div>
                     {this.props.children} 
                     <List>
@@ -77,13 +84,19 @@ class Login extends React.Component{
             </Context.Provider>  
           )
     }
-
 }
 
-function mapStateToProps(){
-    return {
+const mapStateToProps = (state) => {
 
+    return {
+        loginUser: state.loginUser,
+        selectUser: state.selectUser
     }
 }
 
-export default Login
+const mapDispatchToProps = {
+    selectUser
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
