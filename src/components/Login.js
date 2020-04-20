@@ -49,7 +49,7 @@ class Login extends React.Component{
     selectUser = (userName) => {
         console.log("current login user:", this.props.loginUser)
         console.log("props:", this.props)
-        this.props.dispatch(selectUser(userName))
+        this.props.selectUser(userName)
         console.log("selectUser:", userName)
         console.log("current login user after select:", this.props.loginUser)
     }
@@ -90,12 +90,14 @@ const mapStateToProps = (state) => {
 
     return {
         loginUser: state.loginUser,
-        selectUser: state.selectUser
+        
     }
 }
 
-const mapDispatchToProps = {
-    selectUser
+const mapDispatchToProps = dispatch => {
+   return {
+       selectUser: (user) => dispatch(selectUser(user))
+   }
 }
 
 
