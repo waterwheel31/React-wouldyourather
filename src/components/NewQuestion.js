@@ -61,6 +61,7 @@ class NewQuestion extends React.Component{
             choice2: this.state.choice2,
             num_1: 0,
             num_2: 0,
+            answers: {},
             timeStamp: (new Date()).getTime()
         }
 

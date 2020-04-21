@@ -1,5 +1,6 @@
 
 export const NEW_QUESTION = 'NEW_QUESTION'
+export const RECEIVE_QUESTIONS = ' RECEIVE_QUESTIONS'
 
 export function newQuestion(question){
 
@@ -10,3 +11,10 @@ export function newQuestion(question){
    }
 
 }
+
+export function receiveQuestions (questions) {
+    return {
+      type: RECEIVE_QUESTIONS,
+      questions,
+    }
+  }

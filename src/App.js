@@ -1,5 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom'
+import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import './App.css';
 
@@ -17,6 +18,8 @@ import Logout from './components/Logout'
 import NewQuestion from './components/NewQuestion'
 import Theme from './designs/theme'
 
+import { handleInitialData } from './actions'
+
 
 
 class App extends React.Component{
@@ -25,6 +28,9 @@ class App extends React.Component{
 
   }
 
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+  }
 
   render() {
     return (
@@ -59,4 +65,10 @@ class App extends React.Component{
   }
 }
 
-export default App;
+function mapStateToProps () {
+  return {
+  }
+}
+
+
+export default connect(mapStateToProps)(App)

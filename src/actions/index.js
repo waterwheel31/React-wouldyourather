@@ -1,7 +1,13 @@
 
+import {getInitialData} from '../data/api'
 
-export const choseUser = (user) => ({
-    type: 'CHOOSE_USER',
-    user
-})
+import {receiveQuestions} from '../actions/newQuestion'
 
+
+export function handleInitialData(){
+    return () => {
+        return getInitialData().then(({questions}) => {
+            receiveQuestions(questions)
+        })
+    }
+}

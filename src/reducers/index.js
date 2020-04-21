@@ -4,5 +4,6 @@ import question from './question'
 
 export default combineReducers({
     selectUser,
-    question
+    question,
+
 })

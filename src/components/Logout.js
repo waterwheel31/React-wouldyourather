@@ -27,7 +27,7 @@ class Logout extends React.Component{
     }
     render(){
   
-        {this.selectUser.bind(this, null)}
+        {this.selectUser.bind(this, null)()}
         return (    
             <Redirect to="/" />
           )

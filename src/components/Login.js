@@ -2,6 +2,7 @@
 import React from 'react'
 import Theme from '../designs/theme'
 import Header from './header'
+import { Redirect } from "react-router-dom";
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles';
@@ -52,6 +53,7 @@ class Login extends React.Component{
         this.props.selectUser(userName)
         console.log("selectUser:", userName)
         console.log("current login user after select:", this.props.loginUser)
+        
     }
 
     render(){
