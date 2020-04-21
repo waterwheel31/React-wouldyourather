@@ -13,6 +13,7 @@ import Tab from '@material-ui/core/Tab';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import Header from './components/header'
+import Home from './components/Home'
 import Login from './components/Login'
 import Logout from './components/Logout'
 import NewQuestion from './components/NewQuestion'
@@ -29,7 +30,7 @@ class App extends React.Component{
   }
 
   componentDidMount() {
-    this.props.dispatch(handleInitialData())
+    //this.props.dispatch(handleInitialData())
   }
 
   render() {
@@ -37,7 +38,7 @@ class App extends React.Component{
       <div className="App">
 
         <Route exact path='/'  render={()=>(    
-           <Header/> 
+           <Home/> 
            
         )}/>
 

@@ -26,7 +26,7 @@ class Login extends React.Component{
 
     state = {
         users: [
-            {
+              {
                 "id": "karen",
                 "name": "Karen",
                 "handle": "karen",
