@@ -3,8 +3,10 @@ import React from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Theme from '../designs/theme'
+
 import {Link} from 'react-router-dom'
 
 import { connect } from 'react-redux'
@@ -18,7 +20,7 @@ class Header extends React.Component{
                     <div> <h1>Would You Rather?</h1>
                       {this.props.loginUser == undefined || this.props.loginUser == null
                         ? null 
-                        : <div align="right">loginuser: {this.props.loginUser} </div>
+                        :  <Typography color="textSecondary" align="right"> (login user: {this.props.loginUser} )</Typography>
                         }
                       
                       {this.props.loginUser == undefined || this.props.loginUser == null
@@ -28,7 +30,7 @@ class Header extends React.Component{
                                     aria-label="simple tabs example"
                                     centered
                                     >       
-                                    <Link to='/login'>
+                                    <Link to='/login' style={{ textDecoration: 'none'  ,color: 'white' }}>
                                         <Tab label="Login" />
                                     </Link>
                                     
@@ -41,16 +43,16 @@ class Header extends React.Component{
                                     aria-label="simple tabs example"
                                     centered
                                     >
-                                    <Link to='/'>
+                                    <Link to='/' style={{ textDecoration: 'none' ,color: 'white' }}>
                                         <Tab label="Home" />
                                     </Link>
-                                    <Link to='/new_question'>
+                                    <Link to='/new_question' style={{ textDecoration: 'none'  ,color: 'white' }}>
                                         <Tab label="New Question" />
                                     </Link>
-                                    <Link to='/leaderboard'>
+                                    <Link to='/leaderboard' style={{ textDecoration: 'none'  ,color: 'white' }}>
                                         <Tab label="Leader Board" />
                                     </Link>
-                                    <Link to='/logout'>
+                                    <Link to='/logout' style={{ textDecoration: 'none'  ,color: 'white' }}>
                                         <Tab label="Logout" />
                                     </Link>
                                     

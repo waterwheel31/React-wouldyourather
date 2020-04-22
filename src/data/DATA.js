@@ -27,19 +27,19 @@ let users = {
       id: "karen",
       name: "Karen",
       handle: "karen",
-      avatarURL: "./karen.jpg"
+      avatarURL: "../images/image1.png"
     },
      richard: {
       id: "richard",
       name: "Richard",
       handle: "richard",
-      avatarURL: "./richard.jpg"
+      avatarURL: "../images/image2.png"
     },
      tyler: {
       id: "tyler",
       name: "Tyler",
       handle: "tyler",
-      avatarURL: "./tyler.jpg"
+      avatarURL: "../images/image3.png"
     }
 }
 

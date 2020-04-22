@@ -11,7 +11,7 @@ export function handleInitialData(){
         return getInitialData()
             .then(({question, users}) => {
            dispatch(receiveQuestions(question))
-           dispatch(receiveUsers(users))
+           // dispatch(receiveUsers(users))
         })
     }
 }

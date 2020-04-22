@@ -15,6 +15,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Logout from './components/Logout'
 import NewQuestion from './components/NewQuestion'
+import LeaderBoard from './components/LeaderBoard'
 import Theme from './designs/theme'
 
 import { handleInitialData } from './actions'
@@ -44,7 +45,7 @@ class App extends React.Component{
         )}/>
         
         <Route exact path='/leaderboard'  render={()=>(
-             <Header/> 
+             <LeaderBoard/> 
         )}/>
         <Route exact path='/login' render={()=>(
              <Login/> 

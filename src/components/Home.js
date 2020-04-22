@@ -191,17 +191,24 @@ class Home extends React.Component{
 
     render(){
         return(
-            <div>
-                <Header/>       
-                <div><h2>Question List (Unanswered)</h2></div>
+            
+                <div>
+                    <Header/>       
+                    <div>
+                        {this.props.loginUser == undefined 
+                            ? <div> Please login first</div>
+                            : <div>
+                                <div><h2>Question List (Unanswered)</h2></div>
 
-                {this.unansweredList()}
+                                    {this.unansweredList()}
 
-                <div><h2>Question List (Answered)</h2></div>
+                                <div><h2>Question List (Answered)</h2></div>
 
-                {this.answeredList()}
-
-            </div>
+                                    {this.answeredList()}
+                             </div>
+                        }
+                     </div>
+                </div>
         )
         }
 

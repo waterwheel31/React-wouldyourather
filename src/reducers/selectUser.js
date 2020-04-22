@@ -11,7 +11,7 @@ export default function selectUser (state = null, action){
             console.log('reducer RECEIVE_USERS', 'state:'. state, 'action:', action)
             return {
                 ...state,
-                ...action.users
+                users: action.users
             }
             
         default: 

@@ -30,19 +30,19 @@ class Login extends React.Component{
                 "id": "karen",
                 "name": "Karen",
                 "handle": "karen",
-                "avatarURL": "./karen.jpg"
+                "avatarURL": "./images/image1.png"
               },
               {
                 "id": "richard",
                 "name": "Richard",
                 "handle": "richard",
-                "avatarURL": "./richard.jpg"
+                "avatarURL": "../../images/image2.png"
               },
               {
                 "id": "tyler",
                 "name": "Tyler",
                 "handle": "tyler",
-                "avatarURL": "./tyler.jpg"
+                "avatarURL": "./image3.png"
               }
         ]
     }
@@ -70,13 +70,15 @@ class Login extends React.Component{
                     {this.props.children} 
                     <List>
                         {this.state.users.map((user)=>(
-                        <ListItem alignItems="flex-start" onClick={this.selectUser.bind(this, user.id)}>
+                        <ListItem alignItems="flex-start" 
+                            onClick={this.selectUser.bind(this, user.id)}>
                             <ListItemAvatar>
                                     <Avatar alt={user.name} src={user.avatarURL} />
                                 </ListItemAvatar>
                             <ListItemText>
                                 {user.name}
-                                </ListItemText>
+                                {user.avatarURL}
+                            </ListItemText>
                         </ListItem>
                         ))}
                     </List>
