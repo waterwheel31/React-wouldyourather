@@ -4,7 +4,7 @@ import Header from './header'
 import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
 import { answerQuestion } from '../actions/newQuestion';
-
+import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
@@ -16,6 +16,30 @@ import red from '@material-ui/core/colors/red';
 
 class Home extends React.Component{
 
+
+
+    showAvatar(questionUser){
+        let avatarURL = 'URL'
+        let userName = ''
+        
+        let users = []
+        if (this.props.users != null || this.props.users != undefined){
+            users = Object.values(this.props.users)
+        }
+
+        users.forEach(function(user){
+            if(user.id === questionUser){
+                avatarURL = user.avatarURL
+                userName = user.name
+            }
+        })
+        return (
+            <div align="center">
+                <Avatar alt={userName} src={avatarURL} />
+                <Typography color="textSecondary"> {userName} </Typography>
+            </div>
+        )
+    }
 
     showQuestion(question, showButton){
 
@@ -44,7 +68,8 @@ class Home extends React.Component{
             <Card className={classes.root} variant="outlined" style={{backgroundColor: primaryColor}}>
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {question.user} asked, would you rather
+                        {this.showAvatar(question.user)} asked, 
+                        would you rather
                     </Typography>
                     <Typography  gutterBottom>
                         {question.choice1} 
@@ -218,7 +243,8 @@ const mapStateToProps = (state) => {
 
     return {
         loginUser: state.selectUser,
-        questions: state.question
+        questions: state.question,
+        users: state.receiveUsers,  
         
     }
 }

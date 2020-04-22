@@ -20,6 +20,27 @@ let questions = {
         answers: {},
         timeStamp: 1587451933894
     },
+    z91qcdwyww8k99jw7g3: {
+        id: "z91qcdwyww8k99jw7g2",
+        user: "richard",
+        choice1: "Go to the mountain",
+        choice2: "Go to the sea",
+        num_1: 0,
+        num_2: 0,
+        answers: {},
+        timeStamp: 1587451933894
+    },
+
+    z91qcdwyww8k99jw7g4: {
+        id: "z91qcdwyww8k99jw7g2",
+        user: "richard",
+        choice1: "Prefer red",
+        choice2: "Prefer blue",
+        num_1: 0,
+        num_2: 0,
+        answers: {},
+        timeStamp: 1587451933894
+    },
 }
 
 let users = {
@@ -27,19 +48,28 @@ let users = {
       id: "karen",
       name: "Karen",
       handle: "karen",
-      avatarURL: "../images/image1.png"
+      avatarURL: "../images/image1.png",
+      answerNum: 0,
+      questionNum: 1,
+      totalNum: 1
     },
      richard: {
       id: "richard",
       name: "Richard",
       handle: "richard",
-      avatarURL: "../images/image2.png"
+      avatarURL: "../images/image2.png",
+      answerNum: 0,
+      questionNum: 2,
+      totalNum: 2
     },
      tyler: {
       id: "tyler",
       name: "Tyler",
       handle: "tyler",
-      avatarURL: "../images/image3.png"
+      avatarURL: "../images/image3.png",
+      answerNum: 0,
+      questionNum: 1,
+      totalNum: 1
     }
 }
 

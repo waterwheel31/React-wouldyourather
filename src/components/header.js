@@ -32,7 +32,6 @@ class Header extends React.Component{
                 userName = user.name
             }
         })
-
         return (
             <div>
                 <Typography color="textSecondary" align="right"> (login user:  {userName}  )</Typography>
@@ -91,16 +90,10 @@ class Header extends React.Component{
                                 </AppBar>
                             </div>
                       }
-                      
                     </div>
-            </MuiThemeProvider>
-
-           
+            </MuiThemeProvider>      
           )
     }
-
-
-
 }
 
 const mapStateToProps = (state) => {

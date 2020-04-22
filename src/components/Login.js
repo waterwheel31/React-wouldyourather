@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import red from '@material-ui/core/colors/red';
 
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -36,6 +37,8 @@ class Login extends React.Component{
 
     render(){
 
+        const primaryColor = red[50]
+
         let users = []
         const Context = React.createContext()    
         console.log('users:', this.props.users)
@@ -56,7 +59,7 @@ class Login extends React.Component{
                     {this.props.children} 
                     <List>
                         {users.map((user)=>(
-                        <ListItem alignItems="flex-start" 
+                        <ListItem alignItems="flex-start" style={{backgroundColor: primaryColor}}
                             onClick={this.selectUser.bind(this, user.id)}>
                             <ListItemAvatar>
                                     <Avatar alt={user.name} src={user.avatarURL} />

@@ -3,23 +3,64 @@ import Theme from '../designs/theme'
 import Header from './header'
 import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
-
-
-
+import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import red from '@material-ui/core/colors/red';
 
 
 
 
 class LeaderBoard extends React.Component{
     
+
+
     showLeaderBoard(){
+
+        const primaryColor = red[50]
+        let users = []
+        const Context = React.createContext()    
+        console.log('users:', this.props.users)
+        if (this.props.users != null || this.props.uers != undefined){
+            users = Object.values(this.props.users)
+            console.log('users:', users)
+            users = users.sort((a,b)=> users[a].totalNum - users[b].totalNum)
+        }
+
+        console.log('users:', users)
+
         return (
-            <div>leaderboard</div>
+             <div>
+                    <List>
+                        {users.map((user)=>(
+                           <ListItem alignItems="flex-start" style={{backgroundColor: primaryColor}} >
+                                <ListItemAvatar>
+                                     <Avatar alt={user.name} src={user.avatarURL} />
+                                </ListItemAvatar>
+                                <ListItemText>
+                                     <Typography color="textPrimary"> {user.name} </Typography>
+                                </ListItemText>
+                                <ListItemText>
+                                     <Typography color="textSecondary"># Questions:{user.questionNum} </Typography>
+                                </ListItemText>
+                                <ListItemText>
+                                     <Typography color="textSecondary"># Answers:{user.answerNum} </Typography>
+                                </ListItemText>
+                                
+                            </ListItem>
+                        ))}
+                    </List>
+            </div>
         )
     }
     
     
     render(){
+
+
         return(
             <div>
             <Header/>       
@@ -43,7 +84,8 @@ const mapStateToProps = (state) => {
 
     return {
         loginUser: state.selectUser,
-        questions: state.question
+        questions: state.question,
+        users: state.receiveUsers,  
         
     }
 }
