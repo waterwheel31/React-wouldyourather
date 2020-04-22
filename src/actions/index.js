@@ -2,7 +2,7 @@
 import {getInitialData} from '../data/api'
 
 import {receiveQuestions} from '../actions/newQuestion'
-import {receiveUsers} from '../actions/selectUser'
+import {receiveUsers} from '../actions/receiveUsers'
 
 
 export function handleInitialData(){
@@ -11,7 +11,7 @@ export function handleInitialData(){
         return getInitialData()
             .then(({question, users}) => {
            dispatch(receiveQuestions(question))
-           // dispatch(receiveUsers(users))
+           dispatch(receiveUsers(users))
         })
     }
 }

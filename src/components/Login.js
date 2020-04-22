@@ -24,29 +24,7 @@ import {selectUser} from '../actions/selectUser'
 
 class Login extends React.Component{
 
-    state = {
-        users: [
-              {
-                "id": "karen",
-                "name": "Karen",
-                "handle": "karen",
-                "avatarURL": "./images/image1.png"
-              },
-              {
-                "id": "richard",
-                "name": "Richard",
-                "handle": "richard",
-                "avatarURL": "../../images/image2.png"
-              },
-              {
-                "id": "tyler",
-                "name": "Tyler",
-                "handle": "tyler",
-                "avatarURL": "./image3.png"
-              }
-        ]
-    }
-
+ 
     selectUser = (userName) => {
         console.log("current login user:", this.props.loginUser)
         console.log("props:", this.props)
@@ -58,7 +36,15 @@ class Login extends React.Component{
 
     render(){
 
+        let users = []
         const Context = React.createContext()    
+        console.log('users:', this.props.users)
+        if (this.props.users != null || this.props.uers != undefined){
+            users = Object.values(this.props.users)
+        }
+
+        console.log('users:', users)
+
 
         return (
             <Context.Provider value={this.props.store}>    
@@ -69,7 +55,7 @@ class Login extends React.Component{
                     <div><h2>User List</h2></div>
                     {this.props.children} 
                     <List>
-                        {this.state.users.map((user)=>(
+                        {users.map((user)=>(
                         <ListItem alignItems="flex-start" 
                             onClick={this.selectUser.bind(this, user.id)}>
                             <ListItemAvatar>
@@ -77,7 +63,7 @@ class Login extends React.Component{
                                 </ListItemAvatar>
                             <ListItemText>
                                 {user.name}
-                                {user.avatarURL}
+                               
                             </ListItemText>
                         </ListItem>
                         ))}
@@ -94,6 +80,7 @@ const mapStateToProps = (state) => {
 
     return {
         loginUser: state.selectUser,
+        users: state.receiveUsers,
         
     }
 }
