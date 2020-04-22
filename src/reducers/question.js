@@ -15,19 +15,43 @@ export default function question (state = null, action){
         
         case ANSWER_QUESTION:
             console.log('reducer ANSWER_QUESTION', 'state:', state, 'action:', action)
-            return {
-                ...state,
-                question[action.questionId]:{
-                    ...state[action.quesitonId],
-                    answers: {
-                        userId: action.userId,
-                        choice: action.choice
-                    }
+            
+            const questionId = action.questionId
+            console.log('question id:', questionId)
+
+            console.log('state[questionId].answers:', state[questionId].answers)
+            console.log('state[questionId].answers.length:', state[questionId].answers.length)
+
+            if (state[questionId].answers.length == undefined ){
+                
+                return {
+                    ...state,
+                    [action.questionId]: {
+                        ...state[action.questionId],
+                        answers: [{
+                            userId: action.userId,
+                            choice: action.choice
+                        }]
+                    }     
+                
                 }
-               
+            } else {
+                return {
+                    ...state,
+                    [action.questionId]: {
+                        ...state[action.questionId],
+                        answers: [
+                            ...state[action.questionId].answers.concat({
+                            userId: action.userId,
+                            choice: action.choice
+                            })
+                        ]
+                    }      
+                }
             }
 
- 
+            
+
         case RECEIVE_QUESTIONS:
             console.log('reducer RECEIVE_QUESTIONS', 'state:', state, 'action:', action)
             return {

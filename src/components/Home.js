@@ -17,7 +17,7 @@ import red from '@material-ui/core/colors/red';
 class Home extends React.Component{
 
 
-    showQuestion(question){
+    showQuestion(question, showButton){
 
         const primaryColor = red[50]
         const secondaryColor = red[500]
@@ -56,16 +56,20 @@ class Home extends React.Component{
                         {question.choice2}  ? 
                     </Typography>
                 </CardContent>
-                <CardActions style={{justifyContent: 'center'}}>
-                    <Button size="small" 
-                            style={{backgroundColor: secondaryColor}}
-                            onClick={() => {this.handleClick(question.id, "CHOICE1")}}
-                            >{question.choice1}</Button>
-                    <Button size="small" 
-                            style={{backgroundColor: secondaryColor}}
-                            onClick={() => {this.handleClick(question.id, "CHOICE2")}}
-                            >{question.choice2}</Button>
-                </CardActions>
+                {showButton === true
+                ?
+                    <CardActions style={{justifyContent: 'center'}}>
+                        <Button size="small" 
+                                style={{backgroundColor: secondaryColor}}
+                                onClick={() => {this.handleClick(question.id, "CHOICE1")}}
+                                >{question.choice1}</Button>
+                        <Button size="small" 
+                                style={{backgroundColor: secondaryColor}}
+                                onClick={() => {this.handleClick(question.id, "CHOICE2")}}
+                                >{question.choice2}</Button>
+                    </CardActions>
+                : null 
+                }
             </Card>
         )
     }
@@ -82,27 +86,48 @@ class Home extends React.Component{
 
     unansweredList = () => {
 
-        console.log('questions:')
+        const userId = this.props.loginUser
+        console.log('this.props.questions:')
         console.log(this.props.questions)
 
         let questions = []
+        let questions_filtered = []
+        
 
         if (this.props.questions != null || this.props.questions != undefined){
             questions = Object.values(this.props.questions)
             
         }
 
-        console.log('questions:', questions)
-        
+        questions.forEach(function(question){
+            let add = true 
+            console.log(question.id)
+            console.log(question.user)
+            if (question.user === userId){add = false}
+
+            if (question.answers.length != undefined){
+                question.answers.forEach(function(answer){
+                    if (answer.userId === userId) {add = false}
+                })
+            }
+            if (add){
+                questions_filtered.push(question)
+            }
+        })
+
+        console.log('not answered questions:', questions)
+        console.log('not answered questions (filtered):', questions_filtered)
+
+    
         return (
             <div>
-                {questions.length === 0
+                {questions_filtered.length === 0
                     ? null  
                     :<div> 
-                        {questions.map((question) => (
+                        {questions_filtered.map((question) => (
                             <li key={question.id}>
                             {console.log(question)}
-                            {this.showQuestion(question)}
+                            {this.showQuestion(question, true)}
                             </li>
                         ))}
                         
@@ -114,24 +139,47 @@ class Home extends React.Component{
     }
 
     answeredList = () => {
+
+        const userId = this.props.loginUser
         let questions = []
+        let questions_filtered = []
 
         if (this.props.questions != null || this.props.questions != undefined){
             questions = Object.values(this.props.questions)
             
         }
 
-        console.log('questions:', questions)
+        questions.forEach(function(question){
+            let add = false
+            console.log(question.id)
+            console.log(question.user)
+            
+            if (question.answers.length != undefined){
+                question.answers.forEach(function(answer){
+                    if (answer.userId === userId) {add = true}
+                })
+            }
+
+            if (question.user === userId){add = false}
+
+            
+            if (add){
+                questions_filtered.push(question)
+            }
+        })
+
+        console.log('not answered questions:', questions)
+        console.log('not answered questions (filtered):', questions_filtered)
         
         return (
             <div>
-                {questions.length === 0
+                {questions_filtered.length === 0
                     ? null  
                     :<div> 
-                        {questions.map((question) => (
+                        {questions_filtered.map((question) => (
                             <li key={question.id}>
                             {console.log(question)}
-                            {this.showQuestion(question)}
+                            {this.showQuestion(question,false)}
                             </li>
                         ))}
                         
