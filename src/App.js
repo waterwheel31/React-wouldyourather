@@ -1,11 +1,9 @@
 import React from 'react';
 import {Route} from 'react-router-dom'
 import { connect } from 'react-redux'
-import {Link} from 'react-router-dom'
 import './App.css';
 
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -30,7 +28,8 @@ class App extends React.Component{
   }
 
   componentDidMount() {
-    //this.props.dispatch(handleInitialData())
+    console.log('componentDidMount()')
+    this.props.dispatch(handleInitialData())
   }
 
   render() {
@@ -38,19 +37,12 @@ class App extends React.Component{
       <div className="App">
 
         <Route exact path='/'  render={()=>(    
-           <Home/> 
-           
-        )}/>
-
-        <Route exact path='/home_answered'  render={()=>(
-            <Header/> 
+           <Home/>  
         )}/>
         <Route exact path='/new_question'  render={()=>(
             <NewQuestion/>
         )}/>
-        <Route exact path='/answer_question'  render={()=>(
-             <Header/> 
-        )}/>
+        
         <Route exact path='/leaderboard'  render={()=>(
              <Header/> 
         )}/>

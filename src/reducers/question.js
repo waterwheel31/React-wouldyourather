@@ -56,7 +56,7 @@ export default function question (state = null, action){
             console.log('reducer RECEIVE_QUESTIONS', 'state:', state, 'action:', action)
             return {
                 ...state,
-                ...action.questions
+                ...action.question
             }
 
         default: 

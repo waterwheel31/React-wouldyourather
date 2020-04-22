@@ -5,7 +5,7 @@ import red from '@material-ui/core/colors/red'
 
 const Theme = createMuiTheme({
     palette: {
-      //type: 'dark', // ダークテーマ
+      //type: 'dark', // 
       //primary: green,
       primary: red,
     },

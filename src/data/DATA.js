@@ -3,8 +3,8 @@ let questions = {
     z91qcdwyww8k99jw7gm: {
         id: "z91qcdwyww8k99jw7gm",
         user: "karen",
-        choice1: "To East",
-        choice2: "To West",
+        choice1: "Go to the East",
+        choice2: "Go to the  West",
         num_1: 0,
         num_2: 0,
         answers: {},
@@ -22,8 +22,35 @@ let questions = {
     },
 }
 
+let users = {
+     karen: {
+      id: "karen",
+      name: "Karen",
+      handle: "karen",
+      avatarURL: "./karen.jpg"
+    },
+     richard: {
+      id: "richard",
+      name: "Richard",
+      handle: "richard",
+      avatarURL: "./richard.jpg"
+    },
+     tyler: {
+      id: "tyler",
+      name: "Tyler",
+      handle: "tyler",
+      avatarURL: "./tyler.jpg"
+    }
+}
+
 export function _getQuestions() {
     return new Promise((res, rej) => {
         setTimeout(() => res({...questions}), 1000)
+    })
+}
+
+export function _getUsers() {
+    return new Promise((res, rej) => {
+        setTimeout(() => res({...users}), 1000)
     })
 }

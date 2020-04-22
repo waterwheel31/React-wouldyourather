@@ -87,9 +87,7 @@ class Home extends React.Component{
     unansweredList = () => {
 
         const userId = this.props.loginUser
-        console.log('this.props.questions:')
-        console.log(this.props.questions)
-
+      
         let questions = []
         let questions_filtered = []
         
@@ -101,8 +99,7 @@ class Home extends React.Component{
 
         questions.forEach(function(question){
             let add = true 
-            console.log(question.id)
-            console.log(question.user)
+            
             if (question.user === userId){add = false}
 
             if (question.answers.length != undefined){
@@ -115,8 +112,8 @@ class Home extends React.Component{
             }
         })
 
-        console.log('not answered questions:', questions)
-        console.log('not answered questions (filtered):', questions_filtered)
+        //console.log('not answered questions:', questions)
+        //console.log('not answered questions (filtered):', questions_filtered)
 
     
         return (
@@ -126,7 +123,7 @@ class Home extends React.Component{
                     :<div> 
                         {questions_filtered.map((question) => (
                             <li key={question.id}>
-                            {console.log(question)}
+        
                             {this.showQuestion(question, true)}
                             </li>
                         ))}
@@ -151,8 +148,8 @@ class Home extends React.Component{
 
         questions.forEach(function(question){
             let add = false
-            console.log(question.id)
-            console.log(question.user)
+            //console.log(question.id)
+            //console.log(question.user)
             
             if (question.answers.length != undefined){
                 question.answers.forEach(function(answer){
@@ -168,8 +165,8 @@ class Home extends React.Component{
             }
         })
 
-        console.log('not answered questions:', questions)
-        console.log('not answered questions (filtered):', questions_filtered)
+        //console.log('not answered questions:', questions)
+        //console.log('not answered questions (filtered):', questions_filtered)
         
         return (
             <div>
@@ -178,7 +175,7 @@ class Home extends React.Component{
                     :<div> 
                         {questions_filtered.map((question) => (
                             <li key={question.id}>
-                            {console.log(question)}
+                           
                             {this.showQuestion(question,false)}
                             </li>
                         ))}
