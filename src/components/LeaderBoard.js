@@ -27,16 +27,16 @@ class LeaderBoard extends React.Component{
         if (this.props.users != null || this.props.uers != undefined){
             users = Object.values(this.props.users)
             console.log('users:', users)
-            users = users.sort((a,b)=> users[a].totalNum - users[b].totalNum)
+            users = users.sort((a,b)=> b.totalNum - a.totalNum)
         }
 
         console.log('users:', users)
 
         return (
              <div>
-                    <List>
+                    <List >
                         {users.map((user)=>(
-                           <ListItem alignItems="flex-start" style={{backgroundColor: primaryColor}} >
+                           <ListItem alignItems="flex-start" variant="outlined" style={{backgroundColor: primaryColor}} >
                                 <ListItemAvatar>
                                      <Avatar alt={user.name} src={user.avatarURL} />
                                 </ListItemAvatar>
@@ -48,6 +48,9 @@ class LeaderBoard extends React.Component{
                                 </ListItemText>
                                 <ListItemText>
                                      <Typography color="textSecondary"># Answers:{user.answerNum} </Typography>
+                                </ListItemText>
+                                <ListItemText>
+                                     <Typography color="textSecondary"># Total:{user.totalNum} </Typography>
                                 </ListItemText>
                                 
                             </ListItem>

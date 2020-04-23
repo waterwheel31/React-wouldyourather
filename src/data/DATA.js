@@ -8,7 +8,7 @@ let questions = {
         num_1: 0,
         num_2: 0,
         answers: {},
-        timeStamp: 1587451933894
+        timeStamp: 1587451933896
     },
     z91qcdwyww8k99jw7g2: {
         id: "z91qcdwyww8k99jw7g2",
@@ -18,28 +18,28 @@ let questions = {
         num_1: 0,
         num_2: 0,
         answers: {},
-        timeStamp: 1587451933894
+        timeStamp: 1587451933824
     },
     z91qcdwyww8k99jw7g3: {
-        id: "z91qcdwyww8k99jw7g2",
+        id: "z91qcdwyww8k99jw7g3",
         user: "richard",
         choice1: "Go to the mountain",
         choice2: "Go to the sea",
         num_1: 0,
         num_2: 0,
         answers: {},
-        timeStamp: 1587451933894
+        timeStamp: 1587451933394
     },
 
     z91qcdwyww8k99jw7g4: {
-        id: "z91qcdwyww8k99jw7g2",
+        id: "z91qcdwyww8k99jw7g4",
         user: "richard",
         choice1: "Prefer red",
         choice2: "Prefer blue",
         num_1: 0,
         num_2: 0,
         answers: {},
-        timeStamp: 1587451933894
+        timeStamp: 1587455933894
     },
 }
 

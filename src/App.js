@@ -40,7 +40,7 @@ class App extends React.Component{
         <Route exact path='/'  render={()=>(    
            <Home/>  
         )}/>
-        <Route exact path='/new_question'  render={()=>(
+        <Route exact path='/add'  render={()=>(
             <NewQuestion/>
         )}/>
         

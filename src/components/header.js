@@ -76,7 +76,7 @@ class Header extends React.Component{
                                     <Link to='/' style={{ textDecoration: 'none' ,color: 'white' }}>
                                         <Tab label="Home" />
                                     </Link>
-                                    <Link to='/new_question' style={{ textDecoration: 'none'  ,color: 'white' }}>
+                                    <Link to='/add' style={{ textDecoration: 'none'  ,color: 'white' }}>
                                         <Tab label="New Question" />
                                     </Link>
                                     <Link to='/leaderboard' style={{ textDecoration: 'none'  ,color: 'white' }}>

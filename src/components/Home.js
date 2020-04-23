@@ -1,9 +1,8 @@
 import React from 'react'
-import Theme from '../designs/theme'
 import Header from './header'
-import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
 import { answerQuestion } from '../actions/newQuestion';
+
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,12 +10,16 @@ import CardActions from '@material-ui/core/CardActions';
 import { CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import red from '@material-ui/core/colors/red';
 
 
 class Home extends React.Component{
 
-
+    state ={
+        page: 'UNANSWERED'
+    }
 
     showAvatar(questionUser){
         let avatarURL = 'URL'
@@ -102,9 +105,7 @@ class Home extends React.Component{
 
     handleClick(questionId, choice){
         console.log("handleClick", "questionId:", questionId, "choice:", choice)
-
         const userId = this.props.loginUser
-
         this.props.answerQuestion(userId, questionId, choice)
 
     }
@@ -115,7 +116,6 @@ class Home extends React.Component{
       
         let questions = []
         let questions_filtered = []
-        
 
         if (this.props.questions != null || this.props.questions != undefined){
             questions = Object.values(this.props.questions)
@@ -123,10 +123,8 @@ class Home extends React.Component{
         }
 
         questions.forEach(function(question){
-            let add = true 
-            
+            let add = true       
             if (question.user === userId){add = false}
-
             if (question.answers.length != undefined){
                 question.answers.forEach(function(answer){
                     if (answer.userId === userId) {add = false}
@@ -137,9 +135,7 @@ class Home extends React.Component{
             }
         })
 
-        //console.log('not answered questions:', questions)
-        //console.log('not answered questions (filtered):', questions_filtered)
-
+        questions_filtered = questions_filtered.sort((a,b)=>b.timeStamp - a.timeStamp)
     
         return (
             <div>
@@ -147,13 +143,8 @@ class Home extends React.Component{
                     ? null  
                     :<div> 
                         {questions_filtered.map((question) => (
-                            <li key={question.id}>
-        
-                            {this.showQuestion(question, true)}
-                            </li>
-                        ))}
-                        
-                        
+                            <div>  {this.showQuestion(question, true)} </div>
+                        ))}   
                     </div>
                 }
             </div>
@@ -173,39 +164,28 @@ class Home extends React.Component{
 
         questions.forEach(function(question){
             let add = false
-            //console.log(question.id)
-            //console.log(question.user)
-            
+
             if (question.answers.length != undefined){
                 question.answers.forEach(function(answer){
                     if (answer.userId === userId) {add = true}
                 })
             }
-
             if (question.user === userId){add = false}
-
-            
             if (add){
                 questions_filtered.push(question)
             }
         })
 
-        //console.log('not answered questions:', questions)
-        //console.log('not answered questions (filtered):', questions_filtered)
-        
+        questions_filtered = questions_filtered.sort((a,b)=>b.timeStamp - a.timeStamp)
+
         return (
             <div>
                 {questions_filtered.length === 0
                     ? null  
                     :<div> 
                         {questions_filtered.map((question) => (
-                            <li key={question.id}>
-                           
-                            {this.showQuestion(question,false)}
-                            </li>
+                            <div> {this.showQuestion(question,false)}</div>
                         ))}
-                        
-                        
                     </div>
                 }
             </div>
@@ -213,27 +193,46 @@ class Home extends React.Component{
 }
 
 
-
     render(){
+
         return(
-            
                 <div>
-                    <Header/>       
+                    <Header/>    
                     <div>
                         {this.props.loginUser == undefined 
                             ? <div> Please login first</div>
                             : <div>
-                                <div><h2>Question List (Unanswered)</h2></div>
+                                 <div>   
+                                <BottomNavigation
+                                    showLabels
+                                >
+                                    <BottomNavigationAction 
+                                        label="Unanswered Questions" 
+                                        onClick={() => this.setState({ page: 'UNANSWERED' })}
+                                        />
+                                    <BottomNavigationAction 
+                                        label="Answered Questions" 
+                                        onClick={() => this.setState({ page: 'ANSWERED' })}
+                                        />
+                                </BottomNavigation>
+                                </div>
 
-                                    {this.unansweredList()}
-
-                                <div><h2>Question List (Answered)</h2></div>
-
-                                    {this.answeredList()}
-                             </div>
+                                {this.state.page === "UNANSWERED" 
+                                ? 
+                                   <div>
+                                    <div><h2>Unanswered Questions</h2></div>
+                                        {this.unansweredList()}
+                                   </div>
+                                :
+                                  <div>
+                                    <div><h2>Answered Questions</h2></div>
+                                        {this.answeredList()}
+                                  </div>
+                                }
+                            </div>
                         }
                      </div>
-                </div>
+            </div>
         )
         }
 
