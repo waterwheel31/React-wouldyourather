@@ -14,6 +14,7 @@ import Header from './components/header'
 import Home from './components/Home'
 import Login from './components/Login'
 import Logout from './components/Logout'
+import Question from './components/Question'
 import NewQuestion from './components/NewQuestion'
 import LeaderBoard from './components/LeaderBoard'
 import Theme from './designs/theme'
@@ -42,6 +43,9 @@ class App extends React.Component{
         )}/>
         <Route exact path='/add'  render={()=>(
             <NewQuestion/>
+        )}/>
+        <Route exact path='/question/:id' render={()=>(
+             <Question/> 
         )}/>
         
         <Route exact path='/leaderboard'  render={()=>(

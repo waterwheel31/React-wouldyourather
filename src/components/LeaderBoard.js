@@ -36,7 +36,7 @@ class LeaderBoard extends React.Component{
              <div>
                     <List >
                         {users.map((user)=>(
-                           <ListItem alignItems="flex-start" variant="outlined" style={{backgroundColor: primaryColor}} >
+                           <ListItem alignItems="flex-start" style={{backgroundColor: primaryColor}} >
                                 <ListItemAvatar>
                                      <Avatar alt={user.name} src={user.avatarURL} />
                                 </ListItemAvatar>

@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from './header'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 import { answerQuestion } from '../actions/newQuestion';
 
 import Avatar from '@material-ui/core/Avatar';
@@ -66,39 +68,21 @@ class Home extends React.Component{
           });
        
         const classes = useStyles;
+        const linkPath = '/question/'+question.id
+        console.log('linkPath:', linkPath)
 
         return (
+            <Link to={linkPath} style={{ textDecoration: 'none'}}>
             <Card className={classes.root} variant="outlined" style={{backgroundColor: primaryColor}}>
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {this.showAvatar(question.user)} asked, 
-                        would you rather
+                        {this.showAvatar(question.user)} asked a question.
                     </Typography>
-                    <Typography  gutterBottom>
-                        {question.choice1} 
-                    </Typography>
-                    <Typography color="textSecondary"  gutterBottom>
-                        or 
-                    </Typography>
-                    <Typography  gutterBottom>
-                        {question.choice2}  ? 
-                    </Typography>
+
                 </CardContent>
-                {showButton === true
-                ?
-                    <CardActions style={{justifyContent: 'center'}}>
-                        <Button size="small" 
-                                style={{backgroundColor: secondaryColor}}
-                                onClick={() => {this.handleClick(question.id, "CHOICE1")}}
-                                >{question.choice1}</Button>
-                        <Button size="small" 
-                                style={{backgroundColor: secondaryColor}}
-                                onClick={() => {this.handleClick(question.id, "CHOICE2")}}
-                                >{question.choice2}</Button>
-                    </CardActions>
-                : null 
-                }
+                
             </Card>
+            </Link>
         )
     }
 
