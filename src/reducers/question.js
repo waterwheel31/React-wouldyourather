@@ -22,7 +22,7 @@ export default function question (state = null, action){
             console.log('state[questionId].answers:', state[questionId].answers)
             console.log('state[questionId].answers.length:', state[questionId].answers.length)
 
-            if (state[questionId].answers.length == undefined ){
+            if (state[questionId].answers.length === undefined ){
                 
                 return {
                     ...state,

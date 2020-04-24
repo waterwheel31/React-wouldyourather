@@ -1,7 +1,5 @@
 import React from 'react'
-import Theme from '../designs/theme'
 import Header from './header'
-import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
@@ -12,19 +10,14 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import red from '@material-ui/core/colors/red';
 
 
-
-
 class LeaderBoard extends React.Component{
     
-
-
     showLeaderBoard(){
 
         const primaryColor = red[50]
-        let users = []
-        const Context = React.createContext()    
+        let users = [] 
         console.log('users:', this.props.users)
-        if (this.props.users != null || this.props.uers != undefined){
+        if (this.props.users !== null || this.props.uers !== undefined){
             users = Object.values(this.props.users)
             console.log('users:', users)
             users = users.sort((a,b)=> b.totalNum - a.totalNum)
@@ -36,7 +29,9 @@ class LeaderBoard extends React.Component{
              <div>
                     <List >
                         {users.map((user)=>(
-                           <ListItem alignItems="flex-start" style={{backgroundColor: primaryColor}} >
+                           <ListItem alignItems="flex-start" 
+                                key={user.id}
+                                style={{backgroundColor: primaryColor}} >
                                 <ListItemAvatar>
                                      <Avatar alt={user.name} src={user.avatarURL} />
                                 </ListItemAvatar>
@@ -68,7 +63,7 @@ class LeaderBoard extends React.Component{
             <div>
             <Header/>       
             <div>
-                {this.props.loginUser == undefined 
+                {this.props.loginUser === undefined 
                     ? <div> Please login first</div>
                     : <div>
                         <h2>Leader Board </h2>

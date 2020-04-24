@@ -2,16 +2,15 @@ import React from 'react'
 import Header from './header'
 import { connect } from 'react-redux'
 import { answerQuestion } from '../actions/newQuestion';
+import NotFound from './NotFound'
+import {Route} from 'react-router-dom'
 
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
-import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import { CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import red from '@material-ui/core/colors/red';
 
 
@@ -30,7 +29,7 @@ class Question extends React.Component{
         let userName = ''
         
         let users = []
-        if (this.props.users != null || this.props.users != undefined){
+        if (this.props.users !== null && this.props.users !== undefined){
             users = Object.values(this.props.users)
         }
 
@@ -41,10 +40,12 @@ class Question extends React.Component{
             }
         })
         return (
-            <div align="center">
+          
+            <CardContent align="center">
                 <Avatar alt={userName} src={avatarURL} />
                 <Typography color="textSecondary"> {userName} </Typography>
-            </div>
+            </CardContent>
+          
         )
     }
 
@@ -52,30 +53,18 @@ class Question extends React.Component{
 
         const primaryColor = red[50]
         const secondaryColor = red[500]
-        const useStyles = makeStyles({
-            root: {
-              minWidth: 275,
-            },
-            bullet: {
-              display: 'inline-block',
-              margin: '0 2px',
-              transform: 'scale(0.8)',
-            },
-            title: {
-              fontSize: 14,
-            },
-            pos: {
-              marginBottom: 12,
-            },
-          });
        
-        const classes = useStyles;
-
-
+       
         const questionId = window.location.pathname.split('/')[2]
    
         console.log('questions:', this.props.questions)
-        console.log('questions:', this.props.questions[questionId])
+        try{
+            console.log('questions:', this.props.questions[questionId])
+        } catch {
+            return (
+                <Route path="*" component={NotFound} status={404}/>
+            )
+        }
 
         const question = this.props.questions[questionId]
         const userId = this.props.loginUser
@@ -85,80 +74,84 @@ class Question extends React.Component{
         let count1 = 0
         let count2 = 0
 
-        const answers = Object.values(question.answers)
-        answers.forEach((function(answer){
-            if (answer.userId === userId){
-                answered = true
-                myAnswer = answer.choice
-            }
-            countAll += 1
-            if (answer.choice === 'CHOICE1'){
-                count1 += 1
-            } else {
-                count2 +=1
-            }
-        }))
+        console.log('question:', question)
+
+        if (question !== undefined){
+
+            const answers = Object.values(question.answers)
+            answers.forEach((function(answer){
+                if (answer.userId === userId){
+                    answered = true
+                    myAnswer = answer.choice
+                }
+                countAll += 1
+                if (answer.choice === 'CHOICE1'){
+                    count1 += 1
+                } else {
+                    count2 +=1
+                }
+            }))
+        }
 
         return(
-            <duv>
+            <div>
                 <Header/>    
-
-                <div>
-
-                <Card className={classes.root} variant="outlined" style={{backgroundColor: primaryColor}}>
-                <CardContent>
-                    <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {this.showAvatar(question.user)} asked, 
-                        would you rather
-                    </Typography>
-                    <Typography  gutterBottom>
-                        {question.choice1} 
-                    </Typography>
-                    <Typography color="textSecondary"  gutterBottom>
-                        or 
-                    </Typography>
-                    <Typography  gutterBottom>
-                        {question.choice2}  ? 
-                    </Typography>
-                </CardContent>
-                
-
-                {answered === true 
-                ? 
-                <div>
-                    <Typography color="textSecondary"  gutterBottom>
-                        Number of Answers: {countAll} 
-                       
-                    </Typography>
-                    <Typography color="textSecondary"  gutterBottom>
-                        Number of first choice: {count1} ({Math.round(count1/countAll)*100} %)
-                    </Typography>
-                    <Typography color="textSecondary"  gutterBottom>
-                        Number of second choice: {count2} ({Math.round(count2/countAll)*100} %)
-                    </Typography>
-                    <Typography color="textSecondary"  gutterBottom>
-                        You answereed {myAnswer==='CHOICE1' ? question.choice1 : question.choice2} 
-                    </Typography>
-                </div>
+                {this.props.loginUser === undefined 
+                ? <div> Please login first</div>
                 :
-                <CardActions style={{justifyContent: 'center'}}>
-                    <Button size="small" 
-                            style={{backgroundColor: secondaryColor, color: 'white' }}
-                            onClick={() => {this.handleClick(question.id, "CHOICE1")}}
-                            >{question.choice1}</Button>
-                    <Button size="small" 
-                            style={{backgroundColor: secondaryColor, color: 'white'}}
-                            onClick={() => {this.handleClick(question.id, "CHOICE2")}}
-                            >{question.choice2}</Button>
-                </CardActions>
-                }
-                </Card>
+                <div>
 
+                <Card style={{backgroundColor: primaryColor}}>
+                    <CardContent>
+                        
+                            {this.showAvatar(question.user)} asked, 
+                            would you rather
+                       
+                        <Typography  gutterBottom>
+                            {question.choice1} 
+                        </Typography>
+                        <Typography color="textSecondary"  gutterBottom>
+                            or 
+                        </Typography>
+                        <Typography  gutterBottom>
+                            {question.choice2}  ? 
+                        </Typography>
+                    </CardContent>
                     
 
+                    {answered === true 
+                    ? 
+                    <div>
+                        <Typography color="textSecondary"  gutterBottom>
+                            Number of Answers: {countAll} 
+                        
+                        </Typography>
+                        <Typography color="textSecondary"  gutterBottom>
+                            Number of first choice: {count1} ({Math.round(count1/countAll)*100} %)
+                        </Typography>
+                        <Typography color="textSecondary"  gutterBottom>
+                            Number of second choice: {count2} ({Math.round(count2/countAll)*100} %)
+                        </Typography>
+                        <Typography color="textSecondary"  gutterBottom>
+                            You answereed {myAnswer==='CHOICE1' ? question.choice1 : question.choice2} 
+                        </Typography>
+                    </div>
+                    :
+                    <CardActions style={{justifyContent: 'center'}}>
+                        <Button size="small" 
+                                style={{backgroundColor: secondaryColor, color: 'white' }}
+                                onClick={() => {this.handleClick(question.id, "CHOICE1")}}
+                                >{question.choice1}</Button>
+                        <Button size="small" 
+                                style={{backgroundColor: secondaryColor, color: 'white'}}
+                                onClick={() => {this.handleClick(question.id, "CHOICE2")}}
+                                >{question.choice2}</Button>
+                    </CardActions>
+                    }
+                </Card>
                 </div>
-
-            </duv>
+                }
+            </div>
         )
     }
 

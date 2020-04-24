@@ -6,11 +6,11 @@ export default function receiveUsers (state = null, action){
     switch (action.type){
         
         case RECEIVE_USERS:
-            console.log('reducer RECEIVE_USERS', 'state:'. state, 'action:', action)
+            console.log('reducer RECEIVE_USERS', 'state:', state, 'action:', action)
             return action.users
              
         case NEW_QUESTION:
-            console.log('reducer to change the number of new questions', 'state:'. state, 'action:', action)
+            console.log('reducer to change the number of new questions', 'state:', state, 'action:', action)
             return {
                 ...state,
                 [action.question.user]: {
@@ -21,7 +21,7 @@ export default function receiveUsers (state = null, action){
             }
 
         case ANSWER_QUESTION:
-            console.log('reducer to change the number of answered questions', 'state:'. state, 'action:', action)
+            console.log('reducer to change the number of answered questions', 'state:', state, 'action:', action)
             return {
                 ...state,
                 [action.userId]: {

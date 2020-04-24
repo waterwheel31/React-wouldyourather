@@ -1,8 +1,7 @@
 
 import React from 'react'
 
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
@@ -87,7 +86,7 @@ class NewQuestion extends React.Component{
             <div>
                 <Header/> 
                 <div>
-                {this.props.loginUser == undefined 
+                {this.props.loginUser === undefined 
                 ? <div> Please login before adding new quetion</div>
                 :
                     <form onSubmit={this.handleSubmit}> 

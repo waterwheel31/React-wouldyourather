@@ -8,10 +8,8 @@ import { answerQuestion } from '../actions/newQuestion';
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
-import CardActions from '@material-ui/core/CardActions';
 import { CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import red from '@material-ui/core/colors/red';
@@ -28,7 +26,7 @@ class Home extends React.Component{
         let userName = ''
         
         let users = []
-        if (this.props.users != null || this.props.users != undefined){
+        if (this.props.users !== null && this.props.users !== undefined){
             users = Object.values(this.props.users)
         }
 
@@ -49,7 +47,6 @@ class Home extends React.Component{
     showQuestion(question, showButton){
 
         const primaryColor = red[50]
-        const secondaryColor = red[500]
         const useStyles = makeStyles({
             root: {
               minWidth: 275,
@@ -101,7 +98,7 @@ class Home extends React.Component{
         let questions = []
         let questions_filtered = []
 
-        if (this.props.questions != null || this.props.questions != undefined){
+        if (this.props.questions !== null && this.props.questions !== undefined){
             questions = Object.values(this.props.questions)
             
         }
@@ -109,7 +106,7 @@ class Home extends React.Component{
         questions.forEach(function(question){
             let add = true       
             if (question.user === userId){add = false}
-            if (question.answers.length != undefined){
+            if (question.answers.length !== undefined){
                 question.answers.forEach(function(answer){
                     if (answer.userId === userId) {add = false}
                 })
@@ -119,7 +116,7 @@ class Home extends React.Component{
             }
         })
 
-        questions_filtered = questions_filtered.sort((a,b)=>b.timeStamp - a.timeStamp)
+        questions_filtered = questions_filtered.sort((a,b)=>a.timeStamp - b.timeStamp)
     
         return (
             <div>
@@ -141,7 +138,7 @@ class Home extends React.Component{
         let questions = []
         let questions_filtered = []
 
-        if (this.props.questions != null || this.props.questions != undefined){
+        if (this.props.questions !== null || this.props.questions !== undefined){
             questions = Object.values(this.props.questions)
             
         }
@@ -149,7 +146,7 @@ class Home extends React.Component{
         questions.forEach(function(question){
             let add = false
 
-            if (question.answers.length != undefined){
+            if (question.answers.length !== undefined){
                 question.answers.forEach(function(answer){
                     if (answer.userId === userId) {add = true}
                 })
@@ -180,10 +177,15 @@ class Home extends React.Component{
     render(){
 
         return(
+           
+            
                 <div>
                     <Header/>    
+                    {this.props.loginUser === undefined 
+                     ? <div> Please login first</div>
+                    :
                     <div>
-                        {this.props.loginUser == undefined 
+                        {this.props.loginUser === undefined 
                             ? <div> Please login first</div>
                             : <div>
                                  <div>   
@@ -216,9 +218,12 @@ class Home extends React.Component{
                             </div>
                         }
                      </div>
-            </div>
+                    }
+                </div>
+            
         )
         }
+        
 
 }
 

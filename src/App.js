@@ -3,21 +3,13 @@ import {Route} from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.css';
 
-import Button from '@material-ui/core/Button';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-
-import Header from './components/header'
 import Home from './components/Home'
 import Login from './components/Login'
 import Logout from './components/Logout'
 import Question from './components/Question'
+
 import NewQuestion from './components/NewQuestion'
 import LeaderBoard from './components/LeaderBoard'
-import Theme from './designs/theme'
 
 import { handleInitialData } from './actions'
 

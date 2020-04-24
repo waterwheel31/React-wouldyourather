@@ -5,7 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { MuiThemeProvider} from '@material-ui/core/styles'
 import Theme from '../designs/theme'
 
 import {Link} from 'react-router-dom'
@@ -22,7 +22,7 @@ class Header extends React.Component{
         const loginUser = this.props.loginUser
 
         let users = []
-        if (this.props.users != null || this.props.uers != undefined){
+        if (this.props.users !== null || this.props.uers !== undefined){
             users = Object.values(this.props.users)
         }
 
@@ -46,46 +46,37 @@ class Header extends React.Component{
         return (
             <MuiThemeProvider theme={Theme}>
                     <div> <h1>Would You Rather?</h1>
-                      {this.props.loginUser == undefined || this.props.loginUser == null
+                      {this.props.loginUser === undefined || this.props.loginUser === null
                         ? null 
                         : <div>
                              {this.showAvatar()}
                           </div>
                         }
                       
-                      {this.props.loginUser == undefined || this.props.loginUser == null
+                      {this.props.loginUser === undefined || this.props.loginUser === null
                         ?   <div>
-                                <AppBar position="static">
-                                <Tabs value="Value"  
+                                <AppBar position="static"
+                                        fullwidth="true"
+                                >
+                                <Tabs value="0"  
                                     aria-label="simple tabs example"
                                     centered
                                     >       
-                                    <Link to='/login' style={{ textDecoration: 'none'  ,color: 'white' }}>
-                                        <Tab label="Login" />
-                                    </Link>
+                                        <Tab label="Login" value="0" component={Link} to={'/login'}/>
                                     
                                 </Tabs>
                                 </AppBar>
                             </div> 
                         :   <div>
                                 <AppBar position="static">
-                                <Tabs value="Value"  
+                                <Tabs value='0'
                                     aria-label="simple tabs example"
                                     centered
                                     >
-                                    <Link to='/' style={{ textDecoration: 'none' ,color: 'white' }}>
-                                        <Tab label="Home" />
-                                    </Link>
-                                    <Link to='/add' style={{ textDecoration: 'none'  ,color: 'white' }}>
-                                        <Tab label="New Question" />
-                                    </Link>
-                                    <Link to='/leaderboard' style={{ textDecoration: 'none'  ,color: 'white' }}>
-                                        <Tab label="Leader Board" />
-                                    </Link>
-                                    <Link to='/logout' style={{ textDecoration: 'none'  ,color: 'white' }}>
-                                        <Tab label="Logout" />
-                                    </Link>
-                                    
+                                        <Tab label="Home" value="0" component={Link} to={'/'}/>
+                                        <Tab label="New Question" value="1" component={Link} to={'/add'}/>
+                                        <Tab label="Leader Board" value="2" component={Link} to={'/leaderboard'}/>
+                                        <Tab label="Logout" value="3" component={Link} to={'/logout'}/>
                                 </Tabs>
                                 </AppBar>
                             </div>
