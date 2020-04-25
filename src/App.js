@@ -30,24 +30,24 @@ class App extends React.Component{
     return (
       <div className="App">
 
-        <Route exact path='/'  render={()=>(    
-           <Home/>  
+        <Route exact path='/'  render={(routerProps)=>(    
+           <Home {...routerProps}/>  
         )}/>
-        <Route exact path='/add'  render={()=>(
-            <NewQuestion/>
+        <Route exact path='/add'  render={(routerProps)=>(
+            <NewQuestion {...routerProps} />
         )}/>
-        <Route exact path='/question/:id' render={()=>(
-             <Question/> 
+        <Route exact path='/question/:id' render={(routerProps)=>(
+             <Question {...routerProps}/> 
         )}/>
         
-        <Route exact path='/leaderboard'  render={()=>(
-             <LeaderBoard/> 
+        <Route exact path='/leaderboard'  render={(routerProps)=>(
+             <LeaderBoard {...routerProps}/> 
         )}/>
-        <Route exact path='/login' render={()=>(
-             <Login /> 
+        <Route exact path='/login' render={(routerProps)=>(
+             <Login {...routerProps} /> 
         )}/>
-        <Route exact path='/logout' render={()=>(
-             <Logout/> 
+        <Route exact path='/logout' render={(routerProps)=>(
+             <Logout {...routerProps}/> 
         )}/>
 
       </div>

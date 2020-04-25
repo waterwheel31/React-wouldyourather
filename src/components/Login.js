@@ -28,6 +28,12 @@ class Login extends React.Component{
         this.props.selectUser(userName)
         console.log("selectUser:", userName)
         console.log("current login user after select:", this.props.loginUser)
+
+        if (this.props.location.state && this.props.location.state.referrer){
+            this.props.history.push(this.props.location.state.referrer);
+        } else {
+            this.props.history.push("/");
+        }
         
     }
 
@@ -45,6 +51,7 @@ class Login extends React.Component{
         console.log('users:', users)
         console.log('props:', this.props)
         console.log('state:', this.state)
+       
 
         return (
             <Context.Provider value={this.props.store}>    

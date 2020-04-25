@@ -87,7 +87,15 @@ class NewQuestion extends React.Component{
                 <Header/> 
                 <div>
                 {this.props.loginUser === undefined 
-                ? <div> Please login before adding new quetion</div>
+                ? <div>
+                  <div> Please login before adding new quetion</div>
+                  <Redirect
+                    to={{
+                        pathname: '/login',
+                        state: {referrer: '/add'}
+                  }}></Redirect>
+                  </div>
+        
                 :
                     <form onSubmit={this.handleSubmit}> 
                         <div><h2>Create New Question </h2> </div>

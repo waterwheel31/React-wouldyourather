@@ -72,9 +72,8 @@ class LeaderBoard extends React.Component{
                         <Redirect
                             to={{
                                 pathname: '/login',
-                                state: {referrer: '/'}
+                                state: {referrer: '/leaderboard'}
                             }}
-                        
                         />
                     </div>
                     : <div>

@@ -5,6 +5,8 @@ import { answerQuestion } from '../actions/newQuestion';
 import NotFound from './NotFound'
 import {Route} from 'react-router-dom'
 
+import { Redirect } from "react-router-dom";
+
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -98,7 +100,14 @@ class Question extends React.Component{
                
                 <Header/>    
                 {this.props.loginUser === undefined || this.props.loginUser === null
-                ? <div> Please login first</div>
+                ? <div>
+                <div> Please login before adding new quetion</div>
+                <Redirect
+                  to={{
+                      pathname: '/login',
+                      state: {referrer: '/question'}
+                }}></Redirect>
+                </div>
                 :
                 <div>
 
