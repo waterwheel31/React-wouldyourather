@@ -18,6 +18,10 @@ import {selectUser} from '../actions/selectUser'
 class Login extends React.Component{
 
  
+    state = {
+        redirectTo: "/"
+    }
+
     selectUser = (userName) => {
         console.log("current login user:", this.props.loginUser)
         console.log("props:", this.props)
@@ -39,14 +43,14 @@ class Login extends React.Component{
         }
 
         console.log('users:', users)
-
+        console.log('props:', this.props)
+        console.log('state:', this.state)
 
         return (
             <Context.Provider value={this.props.store}>    
                 <MuiThemeProvider theme={Theme}>
                 <div>
                     <Header/> 
-                    
                     <div><h2>User List</h2></div>
                     {this.props.children} 
                     <List>
@@ -77,7 +81,6 @@ const mapStateToProps = (state) => {
     return {
         loginUser: state.selectUser,
         users: state.receiveUsers,
-        
     }
 }
 

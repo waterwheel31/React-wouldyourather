@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import Header from './header'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -72,8 +73,9 @@ class Home extends React.Component{
             <Link to={linkPath} style={{ textDecoration: 'none'}}>
             <Card className={classes.root} variant="outlined" style={{backgroundColor: primaryColor}}>
                 <CardContent>
+                    {this.showAvatar(question.user)}
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {this.showAvatar(question.user)} asked a question.
+                        asked a question.
                     </Typography>
 
                 </CardContent>
@@ -124,7 +126,7 @@ class Home extends React.Component{
                     ? null  
                     :<div> 
                         {questions_filtered.map((question) => (
-                            <div>  {this.showQuestion(question, true)} </div>
+                            <div key={question.id}>  {this.showQuestion(question, true)} </div>
                         ))}   
                     </div>
                 }
@@ -165,7 +167,7 @@ class Home extends React.Component{
                     ? null  
                     :<div> 
                         {questions_filtered.map((question) => (
-                            <div> {this.showQuestion(question,false)}</div>
+                            <div key={question.id}> {this.showQuestion(question,false)}</div>
                         ))}
                     </div>
                 }
@@ -176,13 +178,25 @@ class Home extends React.Component{
 
     render(){
 
+        console.log("props:", this.props)
+        console.log('state:', this.state)
+
         return(
            
             
                 <div>
                     <Header/>    
-                    {this.props.loginUser === undefined 
-                     ? <div> Please login first</div>
+                    {this.props.loginUser === undefined  || this.props.loginUser === null 
+                     ? <div>
+                         <div> Please login first</div>
+                         <Redirect
+                            to={{
+                                pathname: '/login',
+                                state: {referrer: '/'}
+                            }}
+                         
+                         />
+                       </div>
                     :
                     <div>
                         {this.props.loginUser === undefined 

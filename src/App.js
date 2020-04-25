@@ -44,7 +44,7 @@ class App extends React.Component{
              <LeaderBoard/> 
         )}/>
         <Route exact path='/login' render={()=>(
-             <Login/> 
+             <Login /> 
         )}/>
         <Route exact path='/logout' render={()=>(
              <Logout/> 

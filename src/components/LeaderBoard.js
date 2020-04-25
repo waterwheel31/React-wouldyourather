@@ -1,4 +1,6 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
+
 import Header from './header'
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography';
@@ -17,7 +19,7 @@ class LeaderBoard extends React.Component{
         const primaryColor = red[50]
         let users = [] 
         console.log('users:', this.props.users)
-        if (this.props.users !== null || this.props.uers !== undefined){
+        if (this.props.users !== null && this.props.users !== undefined){
             users = Object.values(this.props.users)
             console.log('users:', users)
             users = users.sort((a,b)=> b.totalNum - a.totalNum)
@@ -63,8 +65,18 @@ class LeaderBoard extends React.Component{
             <div>
             <Header/>       
             <div>
-                {this.props.loginUser === undefined 
-                    ? <div> Please login first</div>
+                {this.props.loginUser === undefined || this.props.loginUser === null
+                    ? 
+                    <div>
+                        <div> Please login first</div>
+                        <Redirect
+                            to={{
+                                pathname: '/login',
+                                state: {referrer: '/'}
+                            }}
+                        
+                        />
+                    </div>
                     : <div>
                         <h2>Leader Board </h2>
                         {this.showLeaderBoard()}

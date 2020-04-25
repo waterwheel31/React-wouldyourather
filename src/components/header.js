@@ -62,7 +62,7 @@ class Header extends React.Component{
                                     aria-label="simple tabs example"
                                     centered
                                     >       
-                                        <Tab label="Login" value="0" component={Link} to={'/login'}/>
+                                        <Tab label="Login" value="0" component={Link} to={{pathname:'/login'}}/>
                                     
                                 </Tabs>
                                 </AppBar>
@@ -73,10 +73,10 @@ class Header extends React.Component{
                                     aria-label="simple tabs example"
                                     centered
                                     >
-                                        <Tab label="Home" value="0" component={Link} to={'/'}/>
-                                        <Tab label="New Question" value="1" component={Link} to={'/add'}/>
-                                        <Tab label="Leader Board" value="2" component={Link} to={'/leaderboard'}/>
-                                        <Tab label="Logout" value="3" component={Link} to={'/logout'}/>
+                                        <Tab label="Home" value="0" component={Link} to={{pathname:'/', state:{redirectTo:'test'}}}/>
+                                        <Tab label="New Question" value="1" component={Link} to={{pathname:'/add' }}/>
+                                        <Tab label="Leader Board" value="2" component={Link} to={{pathname:'/leaderboard' }}/>
+                                        <Tab label="Logout" value="3" component={Link} to={{pathname:'/logout'}}/>
                                 </Tabs>
                                 </AppBar>
                             </div>

@@ -95,8 +95,9 @@ class Question extends React.Component{
 
         return(
             <div>
+               
                 <Header/>    
-                {this.props.loginUser === undefined 
+                {this.props.loginUser === undefined || this.props.loginUser === null
                 ? <div> Please login first</div>
                 :
                 <div>
