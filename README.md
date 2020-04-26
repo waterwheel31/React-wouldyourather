@@ -1,6 +1,6 @@
 # Would You Rather Project
 
-<img src='video.gif'>
+<img src='video.gif' width="400">
 
 
 ## What is this?
