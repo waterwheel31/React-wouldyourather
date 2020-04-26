@@ -1,5 +1,8 @@
 # Would You Rather Project
 
+<img src='video.gif'>
+
+
 ## What is this?
 
 - This is a simple React/Redux app to ask and answer questions
